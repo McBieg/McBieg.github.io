@@ -1,4 +1,4 @@
-const komorki = document.querySelectorAll("td");
+const cell = document.querySelectorAll("td");
 const wiadomosc = document.querySelector(".wiadomosc");
 let gracz = "X";
 let koniecGry = flase;
