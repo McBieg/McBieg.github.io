@@ -54,7 +54,7 @@ function ruch() {
     return wygrana;
     
     function sprawdzRemis() {
-      return Array.from(cells).every(cell => cell.classList.contains("zajete"));
+      return Array.from(cells).every(cell => cell.classList.contains("poleZajete"));
     }
     
     
