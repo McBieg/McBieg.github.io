@@ -28,9 +28,12 @@ function checkForWinner() {
       alert("Gracz " + currentPlayer + " wygrał!");
       break;
     }
-    else {
+    if (cells[combo[0]].innerHTML !== "" &&
+        cells[combo[0]].innerHTML !== cells[combo[1]].innerHTML &&
+        cells[combo[1]].innerHTML !== cells[combo[2]].innerHTML) {
+      gameOver = true;
       alert("Remis!");
-    }
+      break;
       
   }
 }
