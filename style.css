@@ -44,32 +44,26 @@ nav a {
 	margin-right: 20px;
 	font-size: 1.2em;
 	}
+
 table {
-	border-collapse: collapse;
-	margin-bottom: 20px;
+  border-collapse: collapse;
+  margin: auto;
 }
 
 td {
-	width: 100px;
-	height: 100px;
-	text-align: center;
-	font-size: 5em;
-	cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 24px;
+  cursor: pointer;
 }
 
-td.poleZajete {
-	cursor: default;
+td:hover {
+  background-color: #f0f0f0;
 }
 
-td.x {
-	color: blue;
-}
-
-td.o {
-	color: red;
-}
-
-.wiadomosc {
-	font-size: 2em;
-	margin-top: 20px;
+td:active {
+  background-color: #c0c0c0;
 }
