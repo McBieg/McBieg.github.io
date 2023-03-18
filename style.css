@@ -44,3 +44,32 @@ nav a {
 	margin-right: 20px;
 	font-size: 1.2em;
 	}
+table {
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+td {
+	width: 100px;
+	height: 100px;
+	text-align: center;
+	font-size: 5em;
+	cursor: pointer;
+}
+
+td.zajete {
+	cursor: default;
+}
+
+td.x {
+	color: blue;
+}
+
+td.o {
+	color: red;
+}
+
+.wiadomosc {
+	font-size: 2em;
+	margin-top: 20px;
+}
