@@ -22,90 +22,24 @@
 			<button id="jednoosobowa">Zagraj sam</button>
 			<button id="wieloosobowa">Zagraj z przyjacielem</button>
 			<div class="wiadomosc"></div>
-      <table id="plansza">
-        <tr>
-          <td x="1" y="1">-</th>
-          <td x="2" y="1">-</th>
-          <td x="3" y="1">-</th>
-        </tr>
-        <tr>
-          <td x="1" y="2">-</th>
-          <td x="2" y="2">-</th>
-          <td x="3" y="2">-</th>
-        </tr>
-        <tr>
-          <td x="1" y="3">-</th>
-          <td x="2" y="3">-</th>
-          <td x="3" y="3">-</th>
-        </tr>
-			</table>
-<div class="wiadomosc"></div>
-<script>const cell = document.querySelectorAll("td");
-const wiadomosc = document.querySelector(".wiadomosc");
-let gracz = "X";
-let koniecGry = flase;
-
-cells.forEach(cell => {
-  cell.addEventListener("click", ruch);
-});
-
-function ruch() {
-  if (this.classList.contains("poleZajete") || koniecGry){
-    return;
-  }
-  
-  this.classList.add("poleZajete", gracz);
-  this.textContent = gracz.toUpperCase();
-  
-  const wiersz = this.parentNode.rowIndex;
-  const kolumna = this.cellIndex;
-  
-  if (sprawdzWygrana(wiersz, kolumna)) {
-    koniecGry = true;
-    wiadomosc.textContent = "${gracz.toUpperCase()} wygrał";
-    return;
-  }
-  
-  if (sprawdzRemis()) {
-    koniecGry = true;
-     wiadomosc.textContent = "Remis";
-     return;
-  }
-  
-  
-  gracz = gracz === "x" ? "o" : "x";
-  wiadomosc.textContent = "Kolej gracza ${gracz.toUpperCase()}";
-  
-  function sprawdzWygrana(kolumna, wiersz) {
-    const wartoscWiersza = [];
-    const wartoscKolumny = [];
-    let wartoscDiagonali = [];
-    let wartoscOdwroconejDiagonali = [];
-  
-  for (let i=0, i<3, i++) {
-    wartoscWiersza.push(cells[wiersz*3+i]);
-    wartoscKolumny.push(cells[kolumna+i*3]);
-    wartoscDiagonali.push(cells[i*3+i;
-    wartoscOdwroconejDiagonali.push(cells[i*3+2=i]);
-  }
-  
-    if (sprawdzWartosc(wartoscWiersza) || sprawdzWartosc(wartoscKolumny) || sprawdzWartosc(wartoscDiagonali) || sprawdzWartosc(wartoscOdwroconejDiagonali)) {
-      return true;
-    }
-    return false;
-  }
-  
-  function sprawdzWartosc(wartosc) {
-    const wygrana = values.every(cell => cell.classList.contains(gracz));
-    if (wygrana) {
-      values.forEach(cell => cell.classList.add("wygrana"));
-    }
-    return wygrana;
-    
-    function sprawdzRemis() {
-      return Array.from(cells).every(cell => cell.classList.contains("poleZajete"));
-    }
-    </script>
+        <table>
+    <tr>
+      <td id="cell0"></td>
+      <td id="cell1"></td>
+      <td id="cell2"></td>
+    </tr>
+    <tr>
+      <td id="cell3"></td>
+      <td id="cell4"></td>
+      <td id="cell5"></td>
+    </tr>
+    <tr>
+      <td id="cell6"></td>
+      <td id="cell7"></td>
+      <td id="cell8"></td>
+    </tr>
+  </table>
+  <script src="script.js"></script>
 			
 			<img src="logo.png" alt="Placeholder obrazka" />
 
