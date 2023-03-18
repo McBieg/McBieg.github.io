@@ -1,67 +1,38 @@
-const cell = document.querySelectorAll("td");
-const wiadomosc = document.querySelector(".wiadomosc");
-let gracz = "X";
-let koniecGry = flase;
+var currentPlayer = "X";
+var gameOver = false;
+var cells = document.querySelectorAll("td");
 
-cells.forEach(cell => {
-  cell.addEventListener("click", ruch);
+cells.forEach(function(cell) {
+  cell.addEventListener("click", function() {
+    if (!gameOver && cell.innerHTML === "") {
+      cell.innerHTML = currentPlayer;
+      checkForWinner();
+      togglePlayer();
+    }
+  });
 });
 
-function ruch() {
-  if (this.classList.contains("poleZajete") || koniecGry){
-    return;
-  }
-  
-  this.classList.add("poleZajete", gracz);
-  this.textContent = gracz.toUpperCase();
-  
-  const wiersz = this.parentNode.rowIndex;
-  const kolumna = this.cellIndex;
-  
-  if (sprawdzWygrana(wiersz, kolumna)) {
-    koniecGry = true;
-    wiadomosc.textContent = "${gracz.toUpperCase()} wygrał";
-    return;
-  }
-  
-  if (sprawdzRemis()) {
-    koniecGry = true;
-     wiadomosc.textContent = "Remis";
-     return;
-  }
-  
-  
-  gracz = gracz === "x" ? "o" : "x";
-  wiadomosc.textContent = "Kolej gracza ${gracz.toUpperCase()}";
-  
-  function sprawdzWygrana(kolumna, wiersz) {
-    const wartoscWiersza = [];
-    const wartoscKolumny = [];
-    let wartoscDiagonali = [];
-    let wartoscOdwroconejDiagonali = [];
-  
-  for (let i=0, i<3, i++) {
-    wartoscWiersza.push(cells[wiersz*3+i]);
-    wartoscKolumny.push(cells[kolumna+i*3]);
-    wartoscDiagonali.push(cells[i*3+i;
-    wartoscOdwroconejDiagonali.push(cells[i*3+2=i]);
-  }
-  
-    if (sprawdzWartosc(wartoscWiersza) || sprawdzWartosc(wartoscKolumny) || sprawdzWartosc(wartoscDiagonali) || sprawdzWartosc(wartoscOdwroconejDiagonali)) {
-      return true;
+function checkForWinner() {
+  var winningCombinations = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8], // horizontal
+    [0, 3, 6], [1, 4, 7], [2, 5, 8], // vertical
+    [0, 4, 8], [2, 4, 6] // diagonal
+  ];
+
+  for (var i = 0; i < winningCombinations.length; i++) {
+    var combo = winningCombinations[i];
+    if (cells[combo[0]].innerHTML !== "" &&
+        cells[combo[0]].innerHTML === cells[combo[1]].innerHTML &&
+        cells[combo[1]].innerHTML === cells[combo[2]].innerHTML) {
+      gameOver = true;
+      alert("Gracz " + currentPlayer + " wygrał!");
+      break;
     }
-    return false;
   }
-  
-  function sprawdzWartosc(wartosc) {
-    const wygrana = values.every(cell => cell.classList.contains(gracz));
-    if (wygrana) {
-      values.forEach(cell => cell.classList.add("wygrana"));
-    }
-    return wygrana;
-    
-    function sprawdzRemis() {
-      return Array.from(cells).every(cell => cell.classList.contains("poleZajete"));
-    }
-    
+}
+
+function togglePlayer() {
+  currentPlayer = currentPlayer === "X" ? "O" : "X";
+}
+
     
