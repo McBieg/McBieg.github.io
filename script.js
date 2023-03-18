@@ -28,6 +28,10 @@ function checkForWinner() {
       alert("Gracz " + currentPlayer + " wygrał!");
       break;
     }
+    else {
+      alert("Remis!");
+    }
+      
   }
 }
 
