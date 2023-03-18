@@ -20,9 +20,16 @@ function ruch() {
   
   if (sprawdzWygrana(wiersz, kolumna)) {
     koniecGry = true;
-    wiadomosc.textContent = "Remis";
+    wiadomosc.textContent = "${gracz.toUpperCase()} wygrał";
     return;
   }
+  
+  if (sprawdzRemis()) {
+    koniecGry = true;
+     wiadomosc.textContent = "Remis";
+     return;
+  }
+  
   
   gracz = gracz === "x" ? "o" : "x";
   wiadomosc.textContent = "Kolej gracza ${gracz.toUpperCase()}";
