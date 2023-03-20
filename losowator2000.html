@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pl">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<title>Przykładowa strona internetowa</title>
+		<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+	</head>
+	<body>
+		<header>
+			<h1 id="logo">Moja strona</h1>
+		</header>
+		
+			<nav>
+				<a href="https://mcbieg.github.io/index">Strona główna</a>
+				<a href="https://mcbieg.github.io/o-nas">O nas</a>
+				<a href="https://mcbieg.github.io/kontakt">Kontakt</a>
+			</nav>
+
+		<div id="container">
+			<h2>Losowator2000</h2>
+			<py-script>
+from tkinter import *
+from tkinter import ttk
+from random import randint
+
+root = Tk()
+root.title("Losowator drużyn 2000")
+root.geometry("610x400")
+root.configure(background='#fce48b')
+
+
+tytul = Label(root, text="Losowator drużyn 2000", font = ('Times new roman', 11, 'bold'))
+tytul.grid(row=0, column=2, sticky=N, pady=5)
+tytul.configure(background='#fce48b')
+
+
+def losowanie():
+
+
+    druzyna1 = []
+    druzyna2 = []
+
+    zawodnik1.delete("1.0", END)
+    zawodnik2.delete("1.0", END)
+
+    for i in range(listaWartosc.size()):
+        los = randint(1,2)
+        if len(druzyna1) == len(druzyna2):
+            if los == 1:
+                    druzyna1.append(listaWartosc.get(i))
+            if los == 2:
+                druzyna2.append(listaWartosc.get(i))
+        else:
+            if len(druzyna1) > len(druzyna2):
+                druzyna2.append(listaWartosc.get(i))
+            elif len(druzyna1) < len(druzyna2):
+                druzyna1.append(listaWartosc.get(i))
+
+
+    for i in range(len(druzyna1)):
+        zawodnik1.insert(INSERT, f"{i + 1}. {druzyna1[i]}\n")
+    for i in range(len(druzyna2)):
+        zawodnik2.insert(INSERT, f"{i + 1}. {druzyna2[i]}\n")
+    
+
+
+def dodawanie():
+    listaWartosc.insert(0,text.get())
+
+def usuwanie():
+
+    global listaWartosc
+    selection = listaWartosc.curselection()
+    listaWartosc.delete(selection[0])
+
+text = Entry(root,)
+text.insert(INSERT, "")
+text.grid(row=1, column=2, sticky=N, pady=5)
+
+przyciskDodaj = Button(root, text="Dodaj zawodnika", width=15, command=lambda: dodawanie())
+przyciskDodaj.grid(row=2, column=2, sticky=N, pady=5)
+
+lista = Label(root, text="Zawodnicy:", font = ('Times new roman', 10))
+lista.grid(row=3, column=2, sticky=N, pady=5)
+
+listaWartosc = Listbox(root, width=20, height=10)
+listaWartosc.grid(row=4, column=2, sticky=N, pady=5)
+
+przyciskLosuj = Button(root, text="Losuj drużyny", width=30, command=lambda: losowanie())
+przyciskLosuj.grid(row=10, column=2, sticky=N, pady=5)
+przyciskLosuj.configure(font = ('Times new roman', 11, 'bold'))
+
+druzyna1Lista = Label(root, text="Drużyna 1:", font = ('Times new roman', 10))
+druzyna1Lista.grid(row=3, column=1, sticky=N, pady=5)
+
+zawodnik1 = Text(root, width=20, height=10)
+zawodnik1.grid(row=4, column=1, sticky=N, pady=5)
+
+zawodnik2 = Text(root, width=20, height=10)
+zawodnik2.grid(row=4, column=3, sticky=N, pady=5)
+
+druzyna2Lista = Label(root, text="Drużyna 2:", font = ('Times new roman', 10))
+druzyna2Lista.grid(row=3, column=3, sticky=N, pady=5)
+
+b = Button(root, text = "Usuń zawodnika", command = lambda: usuwanie())
+b.grid(row=5, column=2, sticky=N, pady=5)
+
+lista.configure(background='#fce48b')
+druzyna1Lista.configure(background='#fce48b')
+druzyna1Lista.configure(background='#fce48b')
+druzyna2Lista.configure(background='#fce48b')
+
+
+root.mainloop()
+
+
+			</py-script>
+			<img src="logo.png" alt="Placeholder obrazka" />
+
+
+		</div>
+	</body>
+</html>
