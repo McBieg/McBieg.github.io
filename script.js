@@ -131,7 +131,6 @@ function init() {
     cells[i].addEventListener("click", handleCellClick);
   }
 
-  newGameBtn.addEventListener("click", startNewGame);
   singlePlayerBtn.addEventListener("click", () => {
     gameType = "single";
     startNewGame();
