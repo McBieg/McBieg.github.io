@@ -63,24 +63,24 @@ nav a {
     cursor: pointer;
     }
 
-    .flipped {
+.flipped {
     background-color: white;
     }
 
-    .matched {
+.matched {
     background-color: green;
     cursor: default;
     }
 
-    #score-board {
+#score-board {
     margin-top: 20px;
     font-size: 24px;
     text-align: center;
     }
 
-    .message {
+.message {
     margin-top: 20px;
     font-size: 24px;
     text-align: center;
     }
-}
+
