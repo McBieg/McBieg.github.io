@@ -103,15 +103,15 @@ function updateMessage(hasWinner = false, winner = null) {
     if (gameType === "single") {
       message.textContent =
         winner === "X"
-          ? Wygrałeś. Twój wynik to ${singlePlayerScore}.
-          : Przegrałeś. Twój wynik to ${singlePlayerScore}.;
+          ? "Wygrałeś. Twój wynik to ${singlePlayerScore}."
+          : "Przegrałeś. Twój wynik to ${singlePlayerScore}.";
     } else {
-      message.textContent = Wygrał ${winner}. Wynik: X: ${multiPlayerScore.X} - O: ${multiPlayerScore.O};
+      message.textContent = "Wygrał ${winner}. Wynik: X: ${multiPlayerScore.X} - O: ${multiPlayerScore.O}";
     }
   } else if (!board.includes("")) {
     message.textContent = "Remis!";
   } else {
-    message.textContent = ${currentPlayer}'s turn.;
+    message.textContent = "${currentPlayer}'s turn.";
   }
 }
 
