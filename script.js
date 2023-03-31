@@ -106,7 +106,7 @@ function updateMessage(hasWinner = false, winner = null) {
           ? "Wygrałeś! Brawo!"
           : "Przegrałeś. Spróbuj jeszcze raz!";
     } else {
-      message.textContent = "Wygrał " + winner + ". Wynik: X: "+ multiPlayerScore.X" - O: " + multiPlayerScore.O;
+      message.textContent = "Wygrał " + winner + ". Wynik: X: " + multiPlayerScore.X + " - O: " + multiPlayerScore.O + ".";
     }
   } else if (!board.includes("")) {
     message.textContent = "Remis!";
