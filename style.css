@@ -45,42 +45,52 @@ nav a {
 	font-size: 1.2em;
 	}
 
-#game-board {
-    display: flex;
-    flex-wrap: wrap;
-    width: 600px;
-    height: 600px;
-    }
+table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  border: 2px solid darkblue;
+}
 
-.card {
-    width: 100px;
-    height: 100px;
-    margin: 10px;
-    font-size: 80px;
-    text-align: center;
-    background-color: lightgray;
-    border-radius: 10px;
-    cursor: pointer;
-    }
+td {
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  font-size: 60px;
+  font-weight: bold;
+  border: 2px solid darkblue;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
 
-.flipped {
-    background-color: white;
-    }
+td:hover {
+  background-color: lightblue;
+}
 
-.matched {
-    background-color: green;
-    cursor: default;
-    }
+td.highlight {
+  background-color: lightgreen;
+}
 
-#score-board {
-    margin-top: 20px;
-    font-size: 24px;
-    text-align: center;
-    }
+#message {
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
 
-.message {
-    margin-top: 20px;
-    font-size: 24px;
-    text-align: center;
-    }
+button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: darkblue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
+button:hover {
+  background-color: blue;
+}
