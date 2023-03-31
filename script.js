@@ -1,51 +1,52 @@
-      const board = ["", "", "", "", "", "", "", "", ""];
+const board = ["", "", "", "", "", "", "", "", ""];
 
-      const winningCombos = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6],
-      ];
+const winningCombos = [
+	[0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+    ];
 
-      let currentPlayer = "X";
-      let gameType = "single";
-      let gameActive = true;
-      let singlePlayerScore = 0;
-      let multiPlayerScore = { X: 0, O: 0 };
+let currentPlayer = "X";
+let gameType = "single";
+let gameActive = true;
+let singlePlayerScore = 0;
+let multiPlayerScore = { X: 0, O: 0 };
 
-      const cells = document.querySelectorAll("td");
-      const message = document.getElementById("message");
-      const newGameBtn = document.getElementById("new-game-btn");
-      const singlePlayerBtn = document.getElementById("single-player-btn");
-      const multiPlayerBtn = document.getElementById("multi-player-btn");
+const cells = document.querySelectorAll("td");
+const message = document.getElementById("message");
+const newGameBtn = document.getElementById("new-game-btn");
+const singlePlayerBtn = document.getElementById("single-player-btn");
+const multiPlayerBtn = document.getElementById("multi-player-btn");
 
-      function handleCellClick(event) {
-        const clickedCell = event.target;
-        const clickedCellIndex = clickedCell.getAttribute("id");
+function handleCellClick(event) {
+    const clickedCell = event.target;
+    const clickedCellIndex = clickedCell.getAttribute("id");
 
-        if (board[clickedCellIndex] !== "" || !gameActive) {
-          return;
-        }
+    if (board[clickedCellIndex] !== "" || !gameActive) {
+		return;
+    }
 
-        board[clickedCellIndex] = currentPlayer;
-        clickedCell.textContent = currentPlayer;
-        clickedCell.classList.add("highlight");
+    board[clickedCellIndex] = currentPlayer;
+    clickedCell.textContent = currentPlayer;
+    clickedCell.classList.add("highlight");
 
-        checkForWin();
+    checkForWin();
 
-        if (gameActive && gameType === "single") {
-          computerPlayerTurn();
-        }
-      }
+    if (gameActive && gameType === "single") {
+        computerPlayerTurn();
+    }
+}
+
 function computerPlayerTurn() {
   const emptyCells = [];
 
   for (let i = 0; i < board.length; i++) {
-    if (board[i] === "") {
+	if (board[i] === "") {
       emptyCells.push(i);
     }
   }
