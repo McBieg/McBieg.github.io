@@ -111,7 +111,7 @@ function updateMessage(hasWinner = false, winner = null) {
   } else if (!board.includes("")) {
     message.textContent = "Remis!";
   } else {
-    message.textContent = currentPlayer + "'s turn.";
+    message.textContent = "Tura gracza: " + currentPlayer;
   }
 }
 
