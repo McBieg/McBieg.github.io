@@ -1,166 +1,146 @@
-const cards = [
-        "A",
-        "A",
-        "B",
-        "B",
-        "C",
-        "C",
-        "D",
-        "D",
-        "E",
-        "E",
-        "F",
-        "F",
-        "G",
-        "G",
-        "H",
-        "H",
+      const board = ["", "", "", "", "", "", "", "", ""];
+
+      const winningCombos = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
       ];
 
-      let player1Score = 0;
-      let player2Score = 0;
-      let currentPlayer = 1;
-      let flippedCards = [];
-      let matchedCards = [];
+      let currentPlayer = "X";
+      let gameType = "single";
+      let gameActive = true;
+      let singlePlayerScore = 0;
+      let multiPlayerScore = { X: 0, O: 0 };
 
-      const gameBoard = document.querySelector("#game-board");
-      const scoreBoard = document.querySelector("#score-board");
-      const message = document.querySelector(".message");
+      const cells = document.querySelectorAll("td");
+      const message = document.getElementById("message");
+      const newGameBtn = document.getElementById("new-game-btn");
+      const singlePlayerBtn = document.getElementById("single-player-btn");
+      const multiPlayerBtn = document.getElementById("multi-player-btn");
 
-      function shuffleCards() {
-        for (let i = cards.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [cards[i], cards[j]] = [cards[j], cards[i]];
-        }
-      }
+      function handleCellClick(event) {
+        const clickedCell = event.target;
+        const clickedCellIndex = clickedCell.getAttribute("id");
 
-      function createCardElement(cardValue) {
-        const cardElement = document.createElement("div");
-        cardElement.classList.add("card");
-        cardElement.dataset.value = cardValue;
-        return cardElement;
-      }
-
-      function handleCardClick(event) {
-        const clickedCard = event.target;
-
-        if (
-          clickedCard.classList.contains("matched") ||
-          clickedCard.classList.contains("flipped")
-        ) {
+        if (board[clickedCellIndex] !== "" || !gameActive) {
           return;
         }
 
-        flippedCards.push(clickedCard);
-        clickedCard.classList.add("flipped");
+        board[clickedCellIndex] = currentPlayer;
+        clickedCell.textContent = currentPlayer;
+        clickedCell.classList.add("highlight");
 
-        if (flippedCards.length === 2) {
-          const card1Value = flippedCards[0].dataset.value;
-          const card2Value = flippedCards[1].dataset.value;
+        checkForWin();
 
-          if (card1Value === card2Value) {
-            flippedCards.forEach((card) => {
-              card.classList.add("matched");
-              matchedCards.push(card);
-            });
-
-            flippedCards = [];
-
-            if (currentPlayer === 1) {
-              player1Score++;
-            } else {
-              player2Score++;
-            }
-          } else {
-            message.textContent = "Wrong!";
-            setTimeout(() => {
-              flippedCards.forEach((card) => {
-                card.classList.remove("flipped");
-              });
-              flippedCards = [];
-              message.textContent = "";
-
-              if (currentPlayer === 1) {
-                currentPlayer = 2;
-              } else {
-                currentPlayer = 1;
-          }
-        }, 1000);
+        if (gameActive && gameType === "single") {
+          computerPlayerTurn();
+        }
       }
+function computerPlayerTurn() {
+  const emptyCells = [];
 
-      updateScoreBoard();
-      checkForEndOfGame();
-    } else if (currentPlayer === 2) {
-      setTimeout(computerPlayerTurn, 1000);
+  for (let i = 0; i < board.length; i++) {
+    if (board[i] === "") {
+      emptyCells.push(i);
     }
   }
 
-  function computerPlayerTurn() {
-    const unmatchedCards = Array.from(
-      gameBoard.querySelectorAll(".card:not(.matched)")
-    );
-    const randomIndex = Math.floor(Math.random() * unmatchedCards.length);
-    const cardToFlip = unmatchedCards[randomIndex];
+  const randomIndex = Math.floor(Math.random() * emptyCells.length);
+  const computerChoice = emptyCells[randomIndex];
 
-    cardToFlip.classList.add("flipped");
+  board[computerChoice] = "O";
+  const cell = document.getElementById(computerChoice);
+  cell.textContent = "O";
+  cell.classList.add("highlight");
 
-    flippedCards.push(cardToFlip);
+  checkForWin();
+}
 
-    setTimeout(() => {
-      const cardValue = cardToFlip.dataset.value;
-      const matchingCard = flippedCards.find(
-        (card) => card.dataset.value === cardValue
-      );
-
-      if (matchingCard) {
-        cardToFlip.classList.add("matched");
-        matchingCard.classList.add("matched");
-        matchedCards.push(cardToFlip, matchingCard);
-
-        flippedCards = [];
-
-        player2Score++;
-      } else {
-        cardToFlip.classList.remove("flipped");
-
-        flippedCards = [];
-
-        currentPlayer = 1;
-      }
-
-      updateScoreBoard();
-      checkForEndOfGame();
-    }, 1000);
-  }
-
-  function updateScoreBoard() {
-    scoreBoard.textContent = Player 1: ${player1Score} | Player 2: ${player2Score};
-  }
-
-  function checkForEndOfGame() {
-    if (matchedCards.length === cards.length) {
-      if (player1Score > player2Score) {
-        message.textContent = "Player 1 wins!";
-      } else if (player2Score > player1Score) {
-        message.textContent = "Player 2 wins!";
-      } else {
-        message.textContent = "It's a tie!";
-      }
+function checkForWin() {
+  for (let i = 0; i < winningCombos.length; i++) {
+    const [a, b, c] = winningCombos[i];
+    if (board[a] !== "" && board[a] === board[b] && board[b] === board[c]) {
+      endGame(true, currentPlayer);
+      return;
     }
   }
 
-  function initGame() {
-    shuffleCards();
-
-    for (let i = 0; i < cards.length; i++) {
-      const cardElement = createCardElement(cards[i]);
-      cardElement.addEventListener("click", handleCardClick);
-      gameBoard.appendChild(cardElement);
-    }
-
-    updateScoreBoard();
+  if (board.includes("")) {
+    currentPlayer = currentPlayer === "X" ? "O" : "X";
+  } else {
+    endGame(false);
   }
 
-  initGame();
+  updateMessage();
+}
+
+function endGame(hasWinner, winner = null) {
+  gameActive = false;
+
+  if (hasWinner) {
+    if (gameType === "single") {
+      winner === "X" ? singlePlayerScore++ : (multiPlayerScore.O++);
+    } else {
+      multiPlayerScore[winner]++;
+    }
+  }
+
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].classList.remove("highlight");
+  }
+
+  updateMessage(hasWinner, winner);
+}
+
+function updateMessage(hasWinner = false, winner = null) {
+  if (hasWinner) {
+    if (gameType === "single") {
+      message.textContent =
+        winner === "X"
+          ? Wygrałeś! Twój wynik to ${singlePlayerScore}.
+          : Przegrałeś. Twój wynik to ${singlePlayerScore}.;
+    } else {
+      message.textContent = Wygrał ${winner}. Wynik: X: ${multiPlayerScore.X} - O: ${multiPlayerScore.O};
+    }
+  } else if (!board.includes("")) {
+    message.textContent = "Remis!";
+  } else {
+    message.textContent = ${currentPlayer}'s turn.;
+  }
+}
+
+function startNewGame() {
+  gameActive = true;
+  board.fill("");
+  currentPlayer = "X";
+  updateMessage();
+
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].textContent = "";
+  }
+}
+
+function init() {
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].addEventListener("click", handleCellClick);
+  }
+
+  newGameBtn.addEventListener("click", startNewGame);
+  singlePlayerBtn.addEventListener("click", () => {
+    gameType = "single";
+    startNewGame();
+  });
+  multiPlayerBtn.addEventListener("click", () => {
+    gameType = "multi";
+    startNewGame();
+  });
+}
+
+init();
 
     
