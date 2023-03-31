@@ -83,9 +83,7 @@ const cards = [
               if (currentPlayer === 1) {
                 currentPlayer = 2;
               } else {
-                currentPlayer
-Wysłano
-currentPlayer = 1;
+                currentPlayer = 1;
           }
         }, 1000);
       }
