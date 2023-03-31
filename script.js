@@ -131,14 +131,15 @@ function init() {
     cells[i].addEventListener("click", handleCellClick);
   }
 
-	singlePlayerBtn.addEventListener("click", () => {
-		gameType = "single";
-		startNewGame();
-	});
-	multiPlayerBtn.addEventListener("click", () => {
-		gameType = "multi";
-		startNewGame();
-	});
+  newGameBtn.addEventListener("click", startNewGame);
+  singlePlayerBtn.addEventListener("click", () => {
+    gameType = "single";
+    startNewGame();
+  });
+  multiPlayerBtn.addEventListener("click", () => {
+    gameType = "multi";
+    startNewGame();
+  });
 }
 
 init();
