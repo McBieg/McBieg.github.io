@@ -1,0 +1,199 @@
+@media (min-width: 1200px) {
+/* Desktop layout */
+.container {
+max-width: 1140px;
+}
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+/* Tablet landscape layout */
+.container {
+max-width: 960px;
+}
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+/* Tablet portrait layout */
+.container {
+max-width: 720px;
+}
+}
+
+@media (max-width: 767px) {
+/* Phone layout */
+.container {
+max-width: 540px;
+}
+}
+
+/* Flexbox grid */
+.row {
+display: flex;
+flex-wrap: wrap;
+margin-right: -15px;
+margin-left: -15px;
+}
+
+.col {
+flex: 1;
+padding: 15px;
+}
+
+/* Bootstrap classes */
+.navbar {
+background-color: #333;
+color: #fff;
+}
+
+.navbar a {
+color: #fff;
+}
+
+.container {
+margin-top: 50px;
+}
+
+.btn {
+background-color: #333;
+color: #fff;
+padding: 10px 20px;
+border-radius: 5px;
+font-weight: bold;
+}
+
+.btn:hover {
+background-color: #555;
+color: #fff;
+}
+
+/* Custom styles */
+#logo {
+font-size: 36px;
+margin: 0;
+}
+
+header {
+background-color: #f2f2f2;
+padding: 20px;
+}
+
+#container {
+background-color: #fff;
+padding: 20px;
+border-radius: 5px;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+margin-top: 0;
+}
+
+img {
+max-width: 100%;
+height: auto;
+margin-bottom: 20px;
+}
+
+p {
+line-height: 1.5;
+font-size: 18px;
+}
+
+@media (max-width: 767px) {
+#logo {
+font-size: 24px;
+}
+
+header {
+padding: 10px;
+}
+
+#container {
+padding: 10px;
+}
+
+h2 {
+font-size: 24px;
+}
+
+p {
+font-size: 16px;
+}
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+#logo {
+font-size: 28px;
+}
+
+h2 {
+font-size: 28px;
+}
+
+p {
+font-size: 16px;
+}
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+#logo {
+font-size: 32px;
+}
+
+h2 {
+font-size: 32px;
+}
+
+p {
+font-size: 18px;
+}
+}
+
+@media (min-width: 1200px) {
+#logo {
+font-size: 36px;
+}
+
+h2 {
+font-size: 36px;
+}
+
+p {
+font-size: 20px;
+}
+}
+/* Media queries dla tabletów */
+@media (min-width: 640px) {
+  #container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .col {
+    flex: 0 0 calc(50% - 1rem);
+    margin: 1rem;
+  }
+}
+
+/* Media queries dla telefonów */
+@media (max-width: 479px) {
+  #container {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .col {
+    flex: 0 0 calc(100% - 1rem);
+    margin: 1rem;
+  }
+}
